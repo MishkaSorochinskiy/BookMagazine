@@ -82,6 +82,8 @@ namespace BookShop.Areas.Identity.Pages.Account
                     await this._context.Buckets.AddAsync(bucket);
                     await this._context.SaveChangesAsync();
 
+                    await this._userManager.AddToRoleAsync(user, "Reader");
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
