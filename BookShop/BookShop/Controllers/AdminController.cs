@@ -17,5 +17,11 @@ namespace BookShop.Controllers
         {
             this._context = context;
         }
+
+        [HttpPost]
+        public IActionResult AddBook()
+        {
+            return View("GetListOfBooks");
+        }
     }
 }
