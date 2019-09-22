@@ -38,18 +38,27 @@ namespace BookShop
             services.AddDbContext<BookShopDb>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+
+            services.AddIdentity<IdentityUser,IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<BookShopDb>();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddScoped<RoleManager<IdentityRole>>();
-            services.AddScoped<UserManager<IdentityUser>>();
             services.AddScoped<BookShopDb>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            UserManager<IdentityUser> umanager,RoleManager<IdentityRole> rmanager,BookShopDb context)
         {
             if (env.IsDevelopment())
             {
@@ -68,7 +77,7 @@ namespace BookShop
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-               
+            DataInitializer.SeedData(umanager, rmanager, context).Wait();
 
             app.UseMvc(routes =>
             {

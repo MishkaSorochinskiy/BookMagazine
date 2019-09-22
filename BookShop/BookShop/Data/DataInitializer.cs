@@ -8,18 +8,18 @@ namespace BookShop.Data
 {
     public static class DataInitializer
     {
-        public static async Task SeedData(UserManager<User> userManager, RoleManager<IdentityRole> roleManager,BookShopDb context)
+        public static async Task SeedData(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager,BookShopDb context)
         {
             await SeedRoles(roleManager);
             await SeedUsers(userManager,context);
         }
-        public static async Task SeedUsers(UserManager<User> userManager,BookShopDb context)
+        public static async Task SeedUsers(UserManager<IdentityUser> userManager,BookShopDb context)
         {
             string username = "admin";
             string password = "Adm$n1";
             if (await userManager.FindByNameAsync(username) == null)
             {
-                User admin = new User();
+                User admin = new User() { UserName=username};
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
