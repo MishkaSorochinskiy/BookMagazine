@@ -79,12 +79,11 @@ namespace BookShop
 
             app.UseAuthentication();
      
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=User}/{action=GetProfileStatistic}/{id?}");
             });
         }
     }
