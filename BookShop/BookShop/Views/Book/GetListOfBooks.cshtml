@@ -1,7 +1,42 @@
-﻿
+﻿@using BookShop.Application;
+@model List<BookDisplay>
 @{
     ViewData["Title"] = "GetListOfBooks";
 }
 
-<h1>GetListOfBooks</h1>
+<h1>Stock of Books</h1>
+       <table class="align-items-sm-center">
+           @foreach (var book in Model)
+           {
+           <tr>
+               <td>
+                   <h3>@book.Name</h3>
+               </td>
+               <td>
+                   <h3>@book.Author</h3>
+               </td>
+               <td>
+                   <h3>@book.Janre</h3>
+               </td>
+               <td>
+                   <a class="nav-link text-justify" href="/User/AddToBucket/@book.Id">Add to Bucket</a>
+               </td>
+               @if (User.Identity.IsAuthenticated)
+               {
+                   if (User.IsInRole("Admin"))
+                   {
+                       <td>
+                           <a class="nav-link text-primary" href="/Admin/Edit/@book.Id">Edit</a>
+                       </td>
+                       <td>
+                           <h3>|</h3>
+                       </td>
+                       <td>
+                           <a class="nav-link text-primary" href="/Admin/Delete/@book.Id">Delete</a>
+                       </td>
 
+                   }
+               }
+           </tr>
+           }
+       </table>

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "AddBook";
+}
+
+<h1>AddBook</h1>
+<form method="post" action="/Admin/AddBook">
+    <table>
+        <tr>
+            <td><p>Name </p></td>
+            <td><input type="text" name="Name" /> </td>
+        </tr>
+        <tr>
+            <td><p>Author :</p></td>
+            <td><input type="text" name="Author" /> </td>
+        </tr>
+        <tr>
+            <td><p>Janre :</p></td>
+            <td><input type="text" name="Janre" /> </td>
+        </tr>
+        <tr>
+            <td><p>Year :</p></td>
+            <td><input type="number" name="Year" /> </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Add" /> </td>
+            <td></td>
+        </tr>
+    </table>
+</form>

@@ -38,6 +38,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Bucket" asp-action="GetBucketInfo">Bucket</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                        <li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddBook">AddBook</a>
+                        </li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>
