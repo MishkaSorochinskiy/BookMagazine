@@ -207,6 +207,7 @@ namespace BookShop.Migrations
                     Author = table.Column<string>(nullable: true),
                     Janre = table.Column<string>(nullable: true),
                     Year = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
                     BucketId = table.Column<int>(nullable: true),
                     OrderId = table.Column<int>(nullable: true)
                 },

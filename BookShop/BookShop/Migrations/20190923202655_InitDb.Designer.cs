@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShop.Migrations
 {
     [DbContext(typeof(BookShopDb))]
-    [Migration("20190922111440_InitDb")]
+    [Migration("20190923202655_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,8 @@ namespace BookShop.Migrations
                         .IsRequired();
 
                     b.Property<int?>("OrderId");
+
+                    b.Property<double>("Price");
 
                     b.Property<int>("Year");
 

@@ -20,6 +20,10 @@ namespace BookShop.Data.Configuration
                 IsRequired();
 
             builder.
+                Property(b => b.Price).
+                IsRequired();
+
+            builder.
                 HasOne(b => b.Order).
                 WithMany(o => o.Books);
 

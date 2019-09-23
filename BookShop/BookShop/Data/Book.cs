@@ -17,6 +17,8 @@ namespace BookShop.Data
 
         public int Year { get; set; }
 
+        public double Price { get; set; }
+
         public int? BucketId { get; set; }
         public Bucket Bucket { get; set; }
 

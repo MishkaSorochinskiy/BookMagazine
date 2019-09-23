@@ -36,6 +36,8 @@ namespace BookShop.Migrations
 
                     b.Property<int?>("OrderId");
 
+                    b.Property<double>("Price");
+
                     b.Property<int>("Year");
 
                     b.HasKey("Id");
