@@ -5,26 +5,21 @@
 
 <h1>AddBook</h1>
 <form method="post" action="/Admin/AddBook">
-    <table>
-        <tr>
-            <td><p>Name </p></td>
-            <td><input type="text" name="Name" /> </td>
-        </tr>
-        <tr>
-            <td><p>Author :</p></td>
-            <td><input type="text" name="Author" /> </td>
-        </tr>
-        <tr>
-            <td><p>Janre :</p></td>
-            <td><input type="text" name="Janre" /> </td>
-        </tr>
-        <tr>
-            <td><p>Year :</p></td>
-            <td><input type="number" name="Year" /> </td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Add" /> </td>
-            <td></td>
-        </tr>
-    </table>
+    <div class="form-group">
+        <label for="Name">Book Name</label>
+        <input type="text" class="form-control" name="Name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+        <label for="Author">Author Name</label>
+        <input type="text" class="form-control" name="Author" placeholder="Enter Author">
+    </div>
+    <div class="form-group">
+        <label for="Janre">Janre</label>
+        <input type="text" class="form-control" name="Janre" placeholder="Enter Janre">
+    </div>
+    <div class="form-group">
+        <label for="Year">Year</label>
+        <input type="number" class="form-control" name="Year" placeholder="Enter Year">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
 </form>
