@@ -15,11 +15,11 @@ namespace BookShop.Data
         }
         public static async Task SeedUsers(UserManager<IdentityUser> userManager, BookShopDb context)
         {
-            string username = "admin";
-            string password = "Adm$n1";
+            string username = "admin@gmail.com";
+            string password = "mainadmin";
             if (await userManager.FindByNameAsync(username) == null)
             {
-                User admin = new User() { UserName = username };
+                User admin = new User() { UserName = username,Email=username };
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
@@ -28,6 +28,7 @@ namespace BookShop.Data
                     await context.Buckets.AddAsync(bucket);
                     await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(admin, "Admin");
+                    await userManager.AddToRoleAsync(admin, "Reader");
                 }
             }
         }

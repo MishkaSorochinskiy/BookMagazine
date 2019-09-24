@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BookShop.Application
 {
-    public class BookDisplay
+    public class BookEdit
     {
         public int Id { get; set; }
 
@@ -13,6 +13,10 @@ namespace BookShop.Application
 
         public string Author { get; set; }
 
+        public string Janre { get; set; }
+
         public double Price { get; set; }
+
+        public int Year { get; set; }
     }
 }

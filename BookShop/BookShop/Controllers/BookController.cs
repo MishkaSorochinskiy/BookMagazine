@@ -20,13 +20,15 @@ namespace BookShop.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetListOfBooks()
         {
             var books = (from i in this._context.Books
+                         where (i.BucketId==null)&&(i.OrderId==null)
                         select new BookDisplay() { Id = i.Id,
                             Name = i.Name,
                             Author = i.Author,
-                            Janre = i.Janre }).ToList();
+                            Price = i.Price }).ToList();
 
             return View(books);
         }

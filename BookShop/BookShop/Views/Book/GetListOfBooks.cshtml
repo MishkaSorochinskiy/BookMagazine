@@ -14,7 +14,7 @@
             <h3>@book.Author</h3>
         </td>
         <td>
-            <h3>@book.Janre</h3>
+            <h3 class="book_price" style="color:cadetblue">@book.Price</h3>
         </td>
         <td>
             <button class="btn btn-success" onclick="location.href='@Url.Action("AddToBucket", "User",new {id=book.Id })'">Add To Bucket</button>

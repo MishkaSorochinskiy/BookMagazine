@@ -39,8 +39,8 @@ namespace BookShop
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<BookShopDb>();
 
@@ -83,7 +83,7 @@ namespace BookShop
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=User}/{action=GetProfileStatistic}/{id?}");
+                    template: "{controller=Book}/{action=GetListOfBooks}/{id?}");
             });
         }
     }

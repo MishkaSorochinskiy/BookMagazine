@@ -12,6 +12,6 @@ namespace BookShop.Data
         public string UserId { get; set; }
         public User User { get; set; }
 
-        public ICollection<Book> Books { get; set; }
+        public ICollection<Book> Books { get; set; } = new List<Book>();
     }
 }

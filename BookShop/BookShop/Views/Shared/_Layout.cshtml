@@ -15,13 +15,13 @@
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
     </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <h3 class="navbar-brand" asp-area="">BookShop</h3>
+                <h3 class="navbar-brand" asp-area="">BookUA</h3>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,13 +30,13 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="GetProfileStatistic">Profile</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="ProfileInfo">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="GetListOfBooks">Books</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bucket" asp-action="GetBucketInfo">Bucket</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="GetBucketInfo">Bucket</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
