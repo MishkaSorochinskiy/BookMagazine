@@ -89,9 +89,13 @@ namespace BookShop.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetOrders()
-        { 
-            return RedirectToAction("GetListOfBooks", "Book");
+        public IActionResult GetOrders()
+        {
+            var orders = from o in this._context.Orders
+                         select new GetOrderDto(o.Id,o.date,o.PostAddress,o.Status);
+                         
+                        
+            return View(orders);
         }
     }
 }

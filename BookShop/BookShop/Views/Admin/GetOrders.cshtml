@@ -1,0 +1,45 @@
+﻿@using BookShop.Application;
+@model List<GetOrderDto>
+@{
+    ViewData["Title"] = "GetOrders";
+}
+
+@if (Model.Count == 0)
+{
+    <h3>There are no books in Shop</h3>
+}
+else
+{
+    <table class="table table-hover">
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>
+                    <h3>@book.Name</h3>
+                </td>
+                <td>
+                    <h3>@book.Author</h3>
+                </td>
+                <td>
+                    <h3 class="book_price" style="color:cadetblue">@book.Price</h3>
+                </td>
+                <td>
+                    <button class="btn btn-success" onclick="location.href='@Url.Action("AddToBucket", "User",new {id=book.Id })'">Add To Bucket</button>
+                </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <button class="btn btn-warning" width="100px" onclick="location.href='@Url.Action("Edit", "Admin",new {id=book.Id })'">Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning" width="100px" onclick="location.href='@Url.Action("Delete", "Admin",new {id=book.Id })'">Delete</button>
+                        </td>
+
+                    }
+                }
+            </tr>
+        }
+    </table>
+}
