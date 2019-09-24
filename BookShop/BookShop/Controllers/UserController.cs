@@ -121,5 +121,41 @@ namespace BookShop.Controllers
 
             return RedirectToAction("GetBucketInfo", "User");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateOrder(CreateOrderDto dto)
+        {
+            User user = (User)await this._manager.FindByNameAsync(HttpContext.User.Identity.Name);
+
+            Order order = new Order() {
+                PostAddress = dto.Address,
+                date = DateTime.Now,
+                Status = Status.Opened,
+                UserId=user.Id,
+                User=user
+            };
+
+            await this._context.SaveChangesAsync();
+
+            Bucket bucket = (from i in this._context.Buckets
+                             where i.UserId.Equals(user.Id)
+                             select i).ToList<Bucket>().First();
+
+            var books = (from i in this._context.Books
+                         where i.BucketId == bucket.Id
+                         select i).ToList<Book>();
+
+            books.ForEach(b =>
+            {
+                b.OrderId = order.Id;
+                b.Order = order;
+                b.BucketId = null;
+                b.Bucket = null;
+            });
+
+            await this._context.SaveChangesAsync();
+
+            return RedirectToAction("GetBucketInfo", "User");
+        }
     }
 }

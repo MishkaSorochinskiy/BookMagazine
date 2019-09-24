@@ -42,9 +42,12 @@
                         {
                             if (User.IsInRole("Admin"))
                             {
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddBook">AddBook</a>
-                        </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddBook">AddBook</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="GetOrders">Orders</a>
+                                </li>
                             }
                         }
                     </ul>

@@ -50,7 +50,7 @@ namespace BookShop.Controllers
 
             await this._context.SaveChangesAsync();
 
-            return RedirectToAction("GetListOfBooks", "Book");
+            return View();
         }
 
         [HttpGet]
@@ -85,6 +85,12 @@ namespace BookShop.Controllers
 
             await this._context.SaveChangesAsync();
 
+            return RedirectToAction("GetListOfBooks", "Book");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetOrders()
+        { 
             return RedirectToAction("GetListOfBooks", "Book");
         }
     }
