@@ -89,9 +89,37 @@ namespace BookShop.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetOrders()
-        { 
-            return RedirectToAction("GetListOfBooks", "Book");
+        public IActionResult GetOrders()
+        {
+            var orders = (from o in this._context.Orders
+                         select new GetOrderDto(o.Id,o.date,o.PostAddress,o.Status)).
+                         ToList<GetOrderDto>();
+                         
+            return View(orders);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> OpenOrder(int id)
+        {
+            Order order =await this._context.Orders.FindAsync(id);
+
+            order.Status = Status.Opened;
+
+            await this._context.SaveChangesAsync();
+
+            return RedirectToAction("GetOrders", "Admin");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CloseOrder(int id)
+        {
+            Order order = await this._context.Orders.FindAsync(id);
+
+            order.Status = Status.Closed;
+
+            await this._context.SaveChangesAsync();
+
+            return RedirectToAction("GetOrders", "Admin");
         }
     }
 }
