@@ -16,6 +16,10 @@ namespace BookShop.Data.Configuration
             builder.
                 HasKey(o => o.Id);
 
+            builder
+                .Property(o => o.PostAddress)
+                .IsRequired();
+
             builder.
                 HasOne(o => o.User).
                 WithMany(u=>u.Orders).

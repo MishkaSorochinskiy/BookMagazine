@@ -182,6 +182,7 @@ namespace BookShop.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PostAddress = table.Column<string>(nullable: false),
                     UserId = table.Column<string>(nullable: false),
                     date = table.Column<DateTime>(nullable: true),
                     Status = table.Column<int>(nullable: false)

@@ -72,6 +72,9 @@ namespace BookShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("PostAddress")
+                        .IsRequired();
+
                     b.Property<int>("Status");
 
                     b.Property<string>("UserId")
