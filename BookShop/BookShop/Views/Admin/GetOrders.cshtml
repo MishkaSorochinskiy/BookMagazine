@@ -23,36 +23,45 @@ else
         </thead>
         @foreach (var order in Model)
         {
-            <tr>
+        <tr>
+            <td>
+                <h3>@order.Id</h3>
+            </td>
+            @if (order.Status == BookShop.Data.Status.Opened)
+            {
                 <td>
-                    <h3>@order.Id</h3>
+                    <h3 style="color:green">@order.Status</h3>
                 </td>
+            }
+            else
+            {
                 <td>
-                    <h3>@order.Status</h3>
+                    <h3 style="color:red">@order.Status</h3>
                 </td>
+            }
+            <td>
+                <h3>@order.PostAddress</h3>
+            </td>
+            <td>
+                <h3 class="book_price" style="color:cadetblue">@order.date</h3>
+            </td>
+            <td>
+                <button class="btn btn-success" onclick="location.href='@Url.Action("GetOrderDetails", "Admin",new {id=order.Id})'">Details</button>
+            </td>
+            @if (order.Status == BookShop.Data.Status.Opened)
+            {
                 <td>
-                    <h3>@order.PostAddress</h3>
+                    <button class="btn btn-warning" onclick="location.href='@Url.Action("CloseOrder", "Admin",new {id=order.Id})'">Close</button>
                 </td>
+            }
+            else
+            {
                 <td>
-                    <h3 class="book_price" style="color:cadetblue">@order.date</h3>
+                    <button class="btn btn-warning" onclick="location.href='@Url.Action("OpenOrder", "Admin",new {id=order.Id})'">Open</button>
                 </td>
-                <td>
-                    <button class="btn btn-success" onclick="location.href='@Url.Action("GetOrderDetail", "Admin",new {id=order.Id})'">Details</button>
-                </td>
-                @if (order.Status == BookShop.Data.Status.Opened)
-                {
-                    <td>
-                        <button class="btn btn-warning" onclick="location.href='@Url.Action("CloseOrder", "Admin",new {id=order.Id})'">Close</button>
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        <button class="btn btn-warning" onclick="location.href='@Url.Action("OpenOrder", "Admin",new {id=order.Id})'">Open</button>
-                    </td>
-                }
+            }
 
-            </tr>
+        </tr>
         }
     </table>
 }
