@@ -10,7 +10,7 @@ namespace BookShop.Application
     {
         public string Email { get; set; }
 
-        public int TotalSum { get; set; }
+        public double TotalSum { get; set; }
 
         public List<BookDisplay> Books { get; set; } = new List<BookDisplay>();
     }

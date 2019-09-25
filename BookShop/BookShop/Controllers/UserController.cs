@@ -157,5 +157,17 @@ namespace BookShop.Controllers
 
             return RedirectToAction("GetBucketInfo", "User");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> History()
+        {
+            User user = (User)await this._manager.FindByNameAsync(HttpContext.User.Identity.Name);
+
+            var orders = (from i in this._context.Orders
+                         where i.UserId == user.Id
+                         select new GetOrderDto(i.Id, i.date, i.PostAddress, i.Status)).ToList();
+  
+            return View(orders);
+        }
     }
 }
