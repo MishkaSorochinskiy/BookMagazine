@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using BookShop.Application;
@@ -95,6 +96,7 @@ namespace BookShop.Controllers
         public IActionResult GetOrders()
         {
             var orders = (from o in this._context.Orders
+                          orderby o.Status
                          select new GetOrderDto(o.Id,o.date,o.PostAddress,o.Status)).
                          ToList<GetOrderDto>();
                          

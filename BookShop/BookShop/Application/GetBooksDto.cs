@@ -9,5 +9,7 @@ namespace BookShop.Application
     public class GetBooksDto
     {
         public List<BookDisplay> Books { get; set; }
+
+        public PageInfo PageInfo { get; set; }
     }
 }
