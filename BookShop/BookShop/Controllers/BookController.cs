@@ -21,16 +21,25 @@ namespace BookShop.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult GetListOfBooks()
+        public IActionResult GetListOfBooks(int page=1)
         {
-            var books = (from i in this._context.Books
-                         where (i.BucketId==null)&&(i.OrderId==null)
-                        select new BookDisplay() { Id = i.Id,
-                            Name = i.Name,
-                            Author = i.Author,
-                            Price = i.Price }).ToList();
+            int pageSize = 8;
 
-            return View(books);
+            var books = (from i in this._context.Books
+                         where (i.BucketId == null) && (i.OrderId == null)
+                         select new BookDisplay()
+                         {
+                             Id = i.Id,
+                             Name = i.Name,
+                             Author = i.Author,
+                             Price = i.Price
+                         }).Skip((page - 1) * pageSize).Take(pageSize).ToList(); ;
+
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = _context.Books.Count()};
+
+            GetBooksDto dto = new GetBooksDto() { Books=books,PageInfo=pageInfo};
+
+            return View(dto);
         }
     }
 }
